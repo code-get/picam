@@ -1,0 +1,6 @@
+---
+- name: Configure PiCam
+  hosts: all
+  become: yes
+  roles:
+    - motion
