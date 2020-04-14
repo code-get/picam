@@ -1,14 +1,75 @@
 ---
+- name: Install Prereqs
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ picam_packages }}"
+
 - name: Install Motion
   package:
     name: motion
     state: present
 
-- name: Configure Motion
-  template:
-    src: motion.conf
-    dest: /etc/motion/motion.conf
-    owner: root
-    group: root
-    mode: '0640'
+- name: Enable Daemon
+  lineinfile:
+    path: /etc/motion/motion.conf
+    regexp: '^daemon*'
+    line: 'daemon on'
+    state: present
+
+- name: Enable Remote Stream
+  lineinfile:
+    path: /etc/motion/motion.conf
+    regexp: '^stream_localhost*'
+    line: 'stream_localhost off'
+    state: present
+
+- name: Configure Max Stream Rate
+  lineinfile:
+    path: /etc/motion/motion.conf
+    regexp: '^stream_maxrate*'
+    line: 'stream_maxrate 100'
+    state: present
+
+- name: Configure Framerate
+  lineinfile:
+    path: /etc/motion/motion.conf
+    regexp: '^framerate*'
+    line: 'framerate 100'
+    state: present
+
+- name: Configure Quality
+  lineinfile:
+    path: /etc/motion/motion.conf
+    regexp: '^stream_quality*'
+    line: 'stream_quality 100'
+    state: present
+
+- name: Configure Rotation
+  lineinfile:
+    path: /etc/motion/motion.conf
+    regexp: '^rotate*'
+    line: 'rotate {{ rotation }}'
+    state: present
+
+- name: Configure Locate Mode
+  lineinfile:
+    path: /etc/motion/motion.conf
+    regexp: '^locate_motion_mode*'
+    line: 'locate_motion_mode on'
+    state: present
+
+- name: Configure Locate Style
+  lineinfile:
+    path: /etc/motion/motion.conf
+    regexp: '^locate_motion_style*'
+    line: 'locate_motion_style redbox'
+    state: present
+
+- name: Enable Motion
+  lineinfile:
+    path: /etc/default/motion
+    regexp: "^start_motion_daemon=no"
+    line: "start_motion_daemon=yes"
+    state: present
 

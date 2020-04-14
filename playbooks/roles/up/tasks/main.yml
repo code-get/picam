@@ -1,0 +1,6 @@
+---
+- name: Up CAM
+  systemd:
+    name: motion
+    state: restarted
+

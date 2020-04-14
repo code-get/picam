@@ -1,0 +1,7 @@
+---
+- name: Up CAMs
+  hosts: all
+  become: yes
+  roles:
+    - up
+

@@ -1,0 +1,22 @@
+
+picam_packages:
+  - autoconf 
+  - automake 
+  - build-essential 
+  - default-libmysqlclient-dev
+  - gettext 
+  - git 
+  - libtool 
+  - libzip-dev 
+  - libjpeg-dev 
+  - libmicrohttpd-dev 
+  - libavformat-dev
+  - libavcodec-dev 
+  - libavutil-dev
+  - libswscale-dev
+  - libavdevice-dev
+  - libpq-dev
+  - libsqlite3-dev
+  - libwebp-dev
+  - pkgconf 
+

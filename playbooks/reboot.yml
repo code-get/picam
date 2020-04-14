@@ -1,0 +1,8 @@
+---
+- name: Reboot CAMs
+  hosts: all
+  become: yes
+  tasks:
+    - name: Reboot CAM Computer
+      reboot:
+

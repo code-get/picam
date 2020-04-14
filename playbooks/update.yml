@@ -1,0 +1,11 @@
+---
+- name: Update CAM Computers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Upgrade all packages to the latest version
+      package:
+        name: "*"
+        state: latest
+        force_apt_get: yes
+
