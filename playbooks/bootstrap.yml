@@ -1,0 +1,19 @@
+---
+- name: Bootstrap PiCAM
+  hosts: all
+  become: yes
+  vars:
+    pi_password: $1$SomeSalt$sSt5AXq2BQpC1Td8PSnUB0
+  tasks:
+    - name: configure Pi Password
+      user:
+        name: pi
+        password: "{{ pi_password }}"
+ 
+    - name: configure Hostname
+      hostname:
+        name: "{{ friendly_name }}"
+
+    - name: Reboot
+      reboot:
+ 
