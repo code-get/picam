@@ -3,49 +3,6 @@
   hosts: 127.0.0.1
   connection: local
   become: yes
-  vars:
-    current_image: '2020-02-13-raspbian-buster-lite.img'
-    zip_file: 'raspbian_lite_latest.zip'
-    device_path: '/dev/sda'
-    download_path: '/home/{{ ansible_user }}/Downloads'
-  tasks:
-    - name: Configure Downloads Folder
-      file:
-        path: '{{ download_path }}'
-        state: directory
+  roles:
+    - sdcard
 
-    - name: Get Latest Raspbian Lite
-      get_url:
-        url: https://downloads.raspberrypi.org/raspbian_lite_latest
-        dest: '{{ download_path }}/{{ zip_file }}'
-
-    - name: Check if Raspbian Image exists
-      stat:
-        path: '{{ download_path }}/{{ current_image }}'
-      register: image_file 
-
-    - name: Extract Raspbian Image
-      unarchive:
-        src: '{{ download_path }}/{{ zip_file }}'
-        dest: '{{ download_path }}' 
-        remote_src: yes
-      when: not image_file.stat.exists
-
-    - name: Confirm SD Card not mounted
-      shell: |
-       disk_mounts=$(fdisk -l | grep {{ device_path  }} | awk 'NR > 1 { print $1 }')
-       for i in ${disk_mounts[@]}; do
-         umount $i
-       done
-      args:
-        executable: /bin/bash
-      register: disk_mount_result
-      changed_when: disk_mount_result.rc == 0
-      failed_when: disk_mount_result.rc != 0 and disk_mount_result.rc != 32
-
-    - name: Create Bootable SD Card for PiCAM
-      shell: |
-       dd if=./{{ current_image }} of={{ device_path }} bs=4M
-      args:
-        chdir: '{{ download_path }}'
- 
