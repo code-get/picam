@@ -1,0 +1,7 @@
+current_image: '2020-02-13-raspbian-buster-lite.img'
+zip_file: 'raspbian_lite_latest.zip'
+device_path: '/dev/sda'
+download_path: '/home/{{ ansible_user }}/Downloads'
+boot_path: '/mnt/boot'
+rootfs_path: '/mnt/rootfs'
+ 
