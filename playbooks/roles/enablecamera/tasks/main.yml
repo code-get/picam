@@ -5,9 +5,11 @@
     state: present
     line: '{{ item }}'
   with_items:
-    - start_x=1             
-    - gpu_mem=128          
+    - start_x=1
+    - gpu_mem=128
 
-- name: Enable Camera Driver 
-  shell: modprobe bcm2835-v4l2
+- name: Enable Camera Driver
+  modprobe:
+    name: bcm2835-v4l2
+    state: present
 
