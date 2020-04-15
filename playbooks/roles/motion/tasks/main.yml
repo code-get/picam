@@ -45,6 +45,20 @@
     line: 'stream_quality 100'
     state: present
 
+- name: Configure Width
+  lineinfile:
+    path: /etc/motion/motion.conf
+    regexp: '^width*'
+    line: 'width 1080'
+    state: present
+
+- name: Configure Height
+  lineinfile:
+    path: /etc/motion/motion.conf
+    regexp: '^height*'
+    line: 'height 720'
+    state: present
+
 - name: Configure Rotation
   lineinfile:
     path: /etc/motion/motion.conf
