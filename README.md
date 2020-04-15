@@ -20,8 +20,8 @@ python -c 'import crypt; print crypt.crypt("This is my Password", "$1$SomeSalt$"
 ### Setup the RSA Keys
 
 ```
+ssh-copy-id pi@192.168.86.200
 ssh-copy-id pi@192.168.86.201
-ssh-copy-id pi@192.168.86.202
 ```
 
 ### Run the Ping Test
