@@ -1,0 +1,12 @@
+---
+- name: Dismount SD Card
+  mount:
+    path: '{{ sd_device_path }}'
+    state: unmounted
+
+- name: Format Disk
+  filesystem:
+    fstype: vfat
+    dev: '{{ sd_device_path }}'
+ 
+

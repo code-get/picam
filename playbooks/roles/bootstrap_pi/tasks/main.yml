@@ -1,0 +1,14 @@
+---
+- name: Enable ssh
+  file:
+    path: /run/media/clandry/boot/ssh
+    state: touch
+
+- name: Configure Wifi
+  template:
+    src: wpa_supplicant.conf
+    dest: /run/media/{{ ansible_user }}/rootfs/etc/wpa_supplicant/wpa_supplicant.conf
+    owner: root
+    group: root
+    mode: '0640'
+
