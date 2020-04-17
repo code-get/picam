@@ -49,14 +49,21 @@
   lineinfile:
     path: /etc/motion/motion.conf
     regexp: '^width*'
-    line: 'width 1080'
+    line: 'width 720'
     state: present
 
 - name: Configure Height
   lineinfile:
     path: /etc/motion/motion.conf
     regexp: '^height*'
-    line: 'height 720'
+    line: 'height 1080'
+    state: present
+
+- name: Configure NTSC
+  lineinfile:
+    path: /etc/motion/motion.conf
+    regexp: '^norm*'
+    line: 'norm 1'
     state: present
 
 - name: Configure Rotation
