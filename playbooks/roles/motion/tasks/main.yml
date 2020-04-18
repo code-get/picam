@@ -35,28 +35,28 @@
   lineinfile:
     path: /etc/motion/motion.conf
     regexp: '^framerate*'
-    line: 'framerate 100'
+    line: 'framerate 30'
     state: present
 
 - name: Configure Quality
   lineinfile:
     path: /etc/motion/motion.conf
     regexp: '^stream_quality*'
-    line: 'stream_quality 100'
+    line: 'stream_quality 75'
     state: present
 
 - name: Configure Width
   lineinfile:
     path: /etc/motion/motion.conf
     regexp: '^width*'
-    line: 'width 1080'
+    line: 'width 320'
     state: present
 
 - name: Configure Height
   lineinfile:
     path: /etc/motion/motion.conf
     regexp: '^height*'
-    line: 'height 720'
+    line: 'height 240'
     state: present
 
 - name: Configure NTSC
